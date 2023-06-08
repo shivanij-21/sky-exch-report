@@ -1,0 +1,52 @@
+<h2>{{Update?.pokerreport}}</h2>
+<ul class="report-tab-wrap" style="display: block;">
+    <li id="reportType_exchange" class="report-tab select"> {{Update?.all}} </li>
+</ul>
+<div class="function-wrap">
+    <ul class="input-list">
+        <li><label>{{Update?.period}}</label></li>
+        <li>
+            <input id="startDate" class="cal-input" type="text" placeholder="YYYY-MM-DD" bsDatepicker
+                [(ngModel)]="selectfromdate" [minDate]="month" [maxDate]="selectfromdate"
+                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default', isAnimated: true }">
+            <input id="startTime" class="time-input " type="text" placeholder="00:00" maxlength="5">
+            to
+            <input id="endDate" class="cal-input" type="text" placeholder="YYYY-MM-DD" bsDatepicker
+                [(ngModel)]="selecttodate" [minDate]="month" [maxDate]="selecttodate"
+                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default', isAnimated: true }">
+            <input id="endTime" class="time-input " type="text" placeholder="23:59" maxlength="5">
+        </li>
+        <li style="display: none;">({{Update?.timezone}}:IST)</li>
+    </ul>
+    <ul class="input-list">
+        <li><a id="today" (click)="selectTab('today')" class="btn">{{Update?.justfortoday}}</a></li>
+        <li><a id="yesterday" (click)="selectTab('yesterday')" class="btn">{{Update?.fromyesterday}}y</a></li>
+        <li style="display: none;"><a id="last7days" (click)="selectTab('last7days')" class="btn">{{Update?.last7days}}</a></li>
+        <li style="display: none;"><a id="last30days" (click)="selectTab('last30days')" class="btn">{{Update?.last30days}}</a>
+        </li>
+        <li style="display: none;"><a id="last2months" (click)="selectTab('last2months')" class="btn">{{Update?.last2months}}</a>
+        </li>
+        <li style="display: none;"><a id="last3months" (click)="selectTab('last3months')" class="btn">{{Update?.last3months}}</a>
+        </li>
+        <li><a id="getPL" (click)="GetBetHistory()" class="btn-send">{{Update?.gethistory}}</a></li>
+    </ul>
+</div>
+<div id="report" style="display: block;">
+    <table id="matchTable" class="table-s" style="display: table;">
+        <tbody>
+            <tr>
+                <th width="80%" class="align-L">{{Update?.username}} </th>
+                <th width="10%">{{Update?.betamount}}</th>
+                <th width="10%" >{{Update?.profitloss}}</th>
+            </tr>
+            <tr style="display: table-row;" id="matchRow0" *ngFor="let bet of bettingHistory">
+                <td class="align-L"> {{ bet.userName }}</td>
+                <td >{{ bet.AmountBet | number: '0.2' }}</td>
+                <td [ngClass]="{'red':bet.AmountWon<0,'green':bet.AmountWon>0}">{{ bet.AmountWon| number: '0.2' }}</td>
+        </tbody>
+    </table>
+</div>
+<div id="noReportMessage" *ngIf="bettingHistory.length==0 && !loader">
+    <p>{{Update?.bethistoryenableyou}} <br>{{Update?.specifythetimeperiodduringwhichyour}}</p>
+    <p>{{Update?.bettinghistoryisavailableonlineforthepast30days}}</p>
+</div>

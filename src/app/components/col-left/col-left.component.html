@@ -1,0 +1,40 @@
+<div class="col-left">
+
+	<!-- Sub Menu and Path -->
+	<div class="sub_path">
+		<!-- Path -->
+		<div class="path">
+			<a href="#path-pop" class="path-back">...</a>
+
+			<ul>
+				<li class="path-last"><a href="#">{{Update?.myaccount}}</a></li>
+			</ul>
+		</div>
+		<!-- Path Pop Up-->
+		<ul id="path-pop" class="path-pop">
+
+		</ul>
+
+		<!-- Sub Menu -->
+		<ul class="menu-list">
+			
+			<li><a id="sub_menu_detail" routerLink="/detail" [routerLinkActive]="['select']">{{Update?.myprofile}}</a></li>
+			
+			<li><a id="sub_menu_summary" routerLink="/summary" [routerLinkActive]="['select']">{{Update?.balanceoverview}}</a></li>
+			
+			<li><a id="sub_menu_accountCashStatement_log" routerLink="/account_statement" [routerLinkActive]="['select']">{{Update?.Accountstatement}}
+			</a></li>
+			
+			<li><a id="sub_menu_my_bets" routerLink="/current_bets" [routerLinkActive]="['select']">{{Update?.mybet}}</a></li>
+			<li><a id="sub_menu_my_bets" routerLink="/casino_bet_history" [routerLinkActive]="['select']">{{Update?.casinobets}}</a></li>
+			<li *ngIf="isSlot"><a id="sub_menu_my_bets" routerLink="/slot_bet_history" [routerLinkActive]="['select']">{{Update?.slotcasinobets}}</a></li>
+			<li *ngIf="isSNcasino"><a id="sub_menu_my_bets" routerLink="/sncasino_bets_history" [routerLinkActive]="['select']">{{Update?.supernovacasinobet}}</a></li>
+			<li *ngIf="isPoker"><a routerLink="poker_bets_history" [routerLinkActive]="['select']">{{Update?.pokerreport}}</a></li>
+			<li *ngIf="isbetgame"><a id="sub_menu_my_bets" routerLink="/betgames_bet_history" [routerLinkActive]="['select']">Betgames Bets</a></li>
+			<li><a id="sub_menu_activity_log" routerLink="/activity_log" [routerLinkActive]="['select']">{{Update?.activitylog}}</a></li>
+			<!-- <li><a id="sub_menu_activity_log" routerLink="/casino_product" [routerLinkActive]="['select']">Casino Product</a></li> -->
+			
+			
+		</ul>
+	</div>
+</div>
